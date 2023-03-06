@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div style="width: 40%; margin: 25px auto;">
+                <h3 style="text-align: center;">Login Page</h3>
+                <form method="POST" action="">
+                    <div class="form-group">
+                        <label>UserName:</label><input type="text" name="UserName" class="form-control" autofocus
+                            placeholder="username">
+                    </div>
+                    <div class="form-group">
+                        <label>Password:</label><input type="Password" name="Password" class="form-control" autofocus
+                            placeholder="Password">
+                    </div>
+
+                    <label>Enter Captcha:</label>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" readonly id="capt">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" id="textinput">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button onclick="validcap()" class="btn btn-lg btn-success btn-block">Submit</button>
+                    </div>
+                </form>
+                <h6>Captcha not visible <img
+                        src="data:image/png;base64,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"
+                        width="40px" onclick="cap()"></h6>
+                <p>New Here?<a href="">Sign Up</a> </p>
+                <p>Forgotten Password?<a href="">Recover here</a> </p>
+
+</body>
+
+</html>
